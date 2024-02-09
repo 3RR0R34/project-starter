@@ -1,6 +1,6 @@
-import {ref,child,get} from "firebase/database";
+import {ref,get} from "firebase/database";
 
-import {db} from "./../../config/firebase/firebaseInit";
+import {db} from "./config/firebase/firebaseInit";
 /*
 1. connect to do list
     reference ref
