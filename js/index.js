@@ -1,24 +1,19 @@
 import { getToDoData } from "./lib/firebase/api";
-let store = []
-async function appInit(){
-    const toDos = await getToDoData();
-    // Object.entries.values(toDos).forEach((toDo) => console.log(Object.keys))
-    // to get the values from the object we use the Object.values(Object.keys(obj),Object.entries(obj))
-    let store = [...Object.values(toDoes)];
+import { toDoItemTemplate } from "./templates/toDoItem";
 
-    const key = "";
-    const keys = Object.keys(toDos);
-    const item = keys.find((item) => {
-        if(item === searchFor){
-            return item;
-        }
+async function appInit() {
+    const appData = await getToDoData();
+
+	const toDoItems = Object.values(appData).map((obj) => {
+        return toDoItemTemplate(obj.todo);
     });
+    // toDoItems.forEach((todo)=> document.querySelector('#root').insertAdjacentHTML("afterbegin", todo));
+    const div = document.createElement('div');
+
+    toDoItems.forEach((markup) => {
+        div.appendChild(markup)
+    });
+    document.querySelector('main').append(div);
 }
 
 appInit();
-
-/*
-    RTDB returns object of object
-    [objects]
-
-*/
